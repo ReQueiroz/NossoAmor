@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izabella & Renato - Nosso Amor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #1a1a2e, #16213e);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Música de fundo */
+        audio {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+        }
+
+        #background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: blur(10px);
+            z-index: -1;
+            transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
+        }
+
+        .tela-inicial {
+            position: absolute;
+            text-align: center;
+            font-size: 1.5em;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .content-box {
+            align-items: center;
+            justify-content: center;
+            width: 60%;
+            max-width: 2000px;
+            margin: auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
+            flex-direction: column;
+            position: relative;
+        }
+
+        #contador {
+            font-size: 1.5em;
+            color: white;
+            margin-top: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        #contador span {
+            margin: 0 5px;
+            font-size: 1em;
+            display: inline-block;
+}
+
+/* A animação será aplicada apenas aos minutos e segundos */
+#contador #minutos.change, #contador #segundos.change {
+    animation: dropdown 0.5s ease-in-out forwards;
+}
+
+@keyframes dropdown {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+        #contador-texto {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+h1 {
+    font-size: 3.5em;
+    color: white;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Sombra suave */
+    opacity: 0;
+    transform: translateY(50px); /* Começa deslocado para baixo */
+    animation: fadeInUp 1.5s ease-out forwards; /* Animação */
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+        .imagem-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        #imagem {
+            width: 40%;
+            height: auto;
+            border-radius: 10px;
+            transition: opacity 1s ease-in-out;
+        }
+
+        #descricao {
+            margin-left: 20px;
+            color: white;
+            font-size: 1.5em;
+            text-align: left;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        button {
+        background: rgba(255, 255, 255, 0.5);
+        border: none;
+        padding: 15px 40px;
+        font-size: 1.5em;
+        cursor: pointer;
+        position: relative;
+        margin-top: 20px;
+        transition: background 0.3s ease-in-out;
+        border-radius: 30px;
+    }
+
+    button:hover {
+        background: rgba(255, 255, 255, 0.8);
+    }
+
+        .escurecer-tela {
+            background-color: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Animação de partículas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.7);
+            animation: floatParticle 4s linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+            }
+        }
+
+        /* Toca discos no canto inferior direito */
+        .toca-discos-container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .toca-discos {
+            width: 100px;
+            height: 100px;
+            animation: girar 2s linear infinite;
+            object-fit: cover;
+        }
+
+        .toca-discos-texto {
+            color: white;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        @keyframes girar {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Música de fundo -->
+    <audio autoplay loop>
+        <source src="1.mp4" type="audio/mp4">
+    </audio>
+
+    <!-- Partículas flutuantes -->
+    <div class="particles" id="particles"></div>
+
+    <div id="background"></div>
+    <div class="escurecer-tela" id="escurecer"></div>
+    <div id="boas-vindas" class="tela-inicial">
+        <p>Seja bem-vinda, meu amor! </br> </br>Fiz esse site pra contar um pouco da nossa história, deixar registrado os bons momentos e, claro, mostrar pra você o que sou capaz de fazer pra te conquistar! </br></br>Te amo, boneca! ❤️</p>
+        <button id="continuar">Continuar</button>
+    </div>
+
+    <div class="container" style="display: none;">
+        <h1>Izabella & Renato </br> Nosso Amor</h1>
+        <div class="content-box">
+            <div id="imagem-container" class="imagem-container">
+                <img id="imagem" src="1.jpg" alt="Foto do casal">
+                <div id="descricao" class="descricao">
+                    <p id="descricao-texto">Se lembra amor, quando fizemos isso? 😘</p>
+                </div>
+            </div>
+            <div id="contador">
+                <div id="contador-texto">Estamos vivendo nosso romance há:</div>
+                <div id="contador-dias">
+                    <span class="change" id="ano">0</span> ano(s),
+                    <span class="change" id="meses">0</span> meses,
+                    <span class="change" id="dias">0</span> dias,
+                    <span class="change" id="horas">0</span> horas,
+                    <span class="change" id="minutos">0</span> minutos e
+                    <span class="change" id="segundos">0</span> segundos
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toca-discos animado -->
+    <div class="toca-discos-container">
+        <img class="toca-discos" src="vinil.png" alt="Toca-discos" />
+        <div class="toca-discos-texto">Going Up - Sing Street</div>
+    </div>
+
+
+    <script>
+
+         // Seleciona o elemento de áudio
+    const audio = document.querySelector("audio");
+
+// Função para aumentar o volume gradualmente ao longo de 30 segundos
+function aumentarVolume() {
+    let volume = 0; // Começa com volume 0
+    audio.volume = volume;
+
+    // Aumenta o volume durante 30 segundos (30000ms)
+    const intervalo = setInterval(() => {
+        volume += 0.01; // Aumenta 0.0333 no volume a cada intervalo
+        if (volume >= 0.1) { // Limite de 60%
+            clearInterval(intervalo); // Para quando o volume atingir 60%
+        }
+        audio.volume = volume;
+    }, 1000); // A cada 1 segundo, aumenta o volume
+}
+
+
+// Quando a página carregar, toca a música automaticamente e inicia o aumento de volume
+window.addEventListener("load", () => {
+    audio.play(); // Inicia a música automaticamente
+    aumentarVolume(); // Inicia o aumento do volume
+});
+
+// Inicia o aumento do volume quando o áudio começa
+audio.addEventListener("play", aumentarVolume);
+        document.getElementById("continuar").addEventListener("click", function() {
+            document.getElementById("boas-vindas").style.display = "none";
+            document.querySelector(".container").style.display = "block";
+            document.getElementById("escurecer").style.display = "none";  // Retirar o escurecimento da tela ao continuar
+        });
+
+        const imagens = [
+    { 
+        src: "1.jpg", 
+        texto: "Se lembra amor, quando fizemos isso? 😘 Foi um dia tão especial, aproveitamos cada segundo e fomos felizes juntos. Cada sorriso registrado nessa foto é uma lembrança que guardamos para sempre! 💕 Foi um dia de sol, o clima estava perfeito, e o nosso amor irradiava de uma maneira tão genuína e verdadeira. Não importa o que acontecia ao nosso redor, estava tudo bem porque estávamos juntos. Um momento que nunca esquecerei!" 
+    },
+    { 
+        src: "2.jpg", 
+        texto: "Ah, esse dia! Como foi maravilhoso! 🌟 O cenário, a energia, a gente ali, aproveitando cada momento e sendo gratos por estarmos juntos. Que dia incrível, né? 🌹 Eu me lembro de como nossos corações batiam no mesmo ritmo, como se o universo tivesse conspirado para que aquele fosse o momento perfeito. Nada poderia ser melhor, nada poderia ser mais especial. Cada segundo vivido ali foi marcado por alegria e felicidade." 
+    },
+    { 
+        src: "3.jpg", 
+        texto: "Esse momento foi inesquecível, né amor? 😍 Lembro como se fosse ontem, foi uma viagem maravilhosa, cheia de risos e memórias. Cada instante ao seu lado é único! 💖 A viagem foi maravilhosa, com paisagens deslumbrantes, e claro, o mais importante foi a companhia. Juntos, conseguimos fazer de cada segundo uma eterna recordação. O tempo pareceu passar rápido demais, mas a sensação de felicidade continua viva até hoje!" 
+    },
+    { 
+        src: "4.jpg", 
+        texto: "Olha só essa foto! Que lugar maravilhoso e o sorriso lindo de você! 😍 Eu me sinto tão feliz ao seu lado. Que dia incrível, amor! 😘 Aquele foi um dia perfeito, onde tudo se encaixou da maneira mais natural possível. Nossa conexão estava tão forte, era como se o tempo parasse. Lembro de como nos sentíamos tão à vontade, como se o mundo fosse só nosso naquele momento. A cada passo, nos tornávamos mais próximos, mais unidos." 
+    },
+    { 
+        src: "5.jpg", 
+        texto: "Sempre juntos, sempre sorrindo! 🥰 Cada lugar que conhecemos, cada experiência nova. O importante é estarmos sempre ao lado um do outro. Que alegria! 🎉 Nossos sorrisos nunca foram tão genuínos como naquele dia. Cada lugar novo que exploramos se tornava especial porque estávamos juntos. O mundo parecia um lugar mais bonito quando compartilhávamos essas experiências. A nossa jornada é cheia de momentos incríveis e estamos construindo juntos um amor imenso!" 
+    },
+    { 
+        src: "6.jpg", 
+        texto: "Esse dia foi marcado por tanto amor e felicidade! 😌 Quando estamos juntos, tudo parece melhor. Cada foto nossa é um lembrete do quanto somos felizes! 💖 Lembro de como tudo parecia perfeito naquele momento, o ambiente, as risadas, as conversas sem fim. Era como se o mundo ao nosso redor não existisse, e só nós dois importássemos. Cada foto é uma lembrança preciosa, um pedaço de felicidade eternizado!" 
+    },
+    { 
+        src: "7.jpg", 
+        texto: "A nossa última viagem foi tão especial! 🌍 Lembro da nossa conversa, das risadas, e da sensação de estar vivendo o melhor momento da minha vida. Te amo! 💕 Aquela viagem foi um marco, um momento que jamais vou esquecer. Tudo parecia perfeito, e o mais importante era que estávamos juntos. Cada novo lugar, cada nova experiência, só fazia com que o nosso amor crescesse ainda mais forte. Você é a pessoa com quem quero compartilhar todos os meus dias e todas as minhas viagens!" 
+    },
+];
+
+
+        let index = 0;
+        let contadorElement = document.getElementById("contador-dias");
+        let imagemElement = document.getElementById("imagem");
+        let descricaoElement = document.getElementById("descricao-texto");
+
+        function atualizarCarrossel() {
+            imagemElement.src = imagens[index].src;
+            descricaoElement.innerText = imagens[index].texto;
+            document.getElementById("background").style.backgroundImage = `url(${imagens[index].src})`;
+        }
+
+        function atualizarContador() {
+    const inicioRelacionamento = new Date("2024-05-18T00:00:00"); // Data de início alterada
+    const agora = new Date();
+    const diferenca = agora - inicioRelacionamento;
+
+    // Calcula os anos, meses, dias, horas, minutos e segundos
+    const anos = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365));
+    const meses = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 30) % 12);
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24) % 30);
+    const horas = Math.floor((diferenca / (1000 * 60 * 60)) % 24);
+    const minutos = Math.floor((diferenca / (1000 * 60)) % 60);
+    const segundos = Math.floor((diferenca / 1000) % 60);
+
+    // Atualiza os valores dos anos, meses, dias, horas, minutos e segundos
+    document.querySelector("#contador #ano").textContent = anos;
+    document.querySelector("#contador #meses").textContent = meses;
+    document.querySelector("#contador #dias").textContent = dias;
+    document.querySelector("#contador #horas").textContent = horas;
+    document.querySelector("#contador #minutos").textContent = minutos;
+    document.querySelector("#contador #segundos").textContent = segundos;
+
+    // Aplica a animação apenas quando os minutos ou segundos mudarem
+    if (minutos !== previousMinutes) {
+        document.querySelector("#contador #minutos").classList.add('change');
+        previousMinutes = minutos;
+    }
+    if (segundos !== previousSeconds) {
+        document.querySelector("#contador #segundos").classList.add('change');
+        previousSeconds = segundos;
+    }
+
+    // Remover a animação após ela terminar para permitir futuras animações
+    setTimeout(() => {
+        document.querySelector("#contador #minutos").classList.remove('change');
+        document.querySelector("#contador #segundos").classList.remove('change');
+    }, 500); // Tempo de duração da animação
+}
+
+// Variáveis para armazenar os valores anteriores
+let previousMinutes = -1;
+let previousSeconds = -1;
+
+setInterval(atualizarContador, 1000); // Atualiza o contador a cada segundo
+
+        function exibirImagem() {
+            index = (index + 1) % imagens.length;
+            atualizarCarrossel();
+            atualizarContador();
+        }
+
+        setInterval(exibirImagem, 10000);
+        setInterval(atualizarContador, 1000);
+
+        exibirImagem();
+    </script>
+</body>
+</html>
