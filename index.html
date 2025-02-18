@@ -246,6 +246,114 @@ h1 {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        @media (max-width: 768px) {
+    /* Ajustes para telas menores, como tablets */
+    body {
+        font-size: 1.2em;
+        padding: 10px;
+    }
+
+    .tela-inicial {
+        font-size: 1.2em;
+        width: 90%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
+
+    .content-box {
+        width: 100%;
+        padding: 15px;
+    }
+
+    #imagem {
+        width: 80%;
+        margin-bottom: 15px;
+    }
+
+    #descricao {
+        font-size: 1.2em;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    #contador {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 1.2em;
+        padding: 10px 25px;
+    }
+
+    .toca-discos-container {
+        bottom: 5px;
+        right: 5px;
+    }
+
+    .toca-discos {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes para telas muito pequenas, como celulares */
+    body {
+        font-size: 1em;
+    }
+
+    .tela-inicial {
+        font-size: 1em;
+        width: 90%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .content-box {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #imagem {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #descricao {
+        font-size: 1em;
+        text-align: center;
+        margin-left: 0;
+    }
+
+    #contador {
+        font-size: 1em;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 8px 20px;
+    }
+
+    .toca-discos-container {
+        bottom: 3px;
+        right: 3px;
+    }
+
+    .toca-discos {
+        width: 60px;
+        height: 60px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -295,6 +403,7 @@ h1 {
 
 
     <script>
+
 
          // Seleciona o elemento de áudio
     const audio = document.querySelector("audio");
